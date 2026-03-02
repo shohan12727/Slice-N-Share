@@ -1,1 +1,19 @@
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Exo+2:ital,wght@0,100..900;1,100..900&display=swap');
 @import "tailwindcss";
+
+@plugin "daisyui" {
+  themes: light --default, dark;
+}
+
+@plugin "daisyui/theme" {
+  name: "light";
+  default: true;
+
+  --color-primary: #1E90FF;
+  --color-secondary: #8A2BE2;
+}
+
+
+*{
+    font-family: "Exo 2", sans-serif;
+}
