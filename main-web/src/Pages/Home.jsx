@@ -1,13 +1,15 @@
-import Banner from '../Components/Banner';
-import Sponsored from "../Components/Sponsored"
+import Banner from "../Components/Banner";
+import Sponsored from "../Components/Sponsored";
+import ScrollToTopButton from "../Components/ScrollToTopButton"
 
 const Home = () => {
-    return (
-        <div>
-        <Banner/>
-        <Sponsored/>
-        </div>
-    );
+  return (
+    <>
+    <ScrollToTopButton/>
+      <Banner />
+      <Sponsored />
+    </>
+  );
 };
 
 export default Home;
