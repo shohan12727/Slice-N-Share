@@ -58,7 +58,7 @@ const Banner = () => {
       </AnimatePresence>
 
       {/* Dark Gradient Overlay */}
-      <div className="absolute inset-0 bg-gradient-to-r from-black via-black/30 to-transparent"></div>
+      <div className="absolute inset-0 bg-gradient-to-r from-black via-black/40 to-transparent"></div>
 
       {/* Neon Glow Overlay */}
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_50%,rgba(0,255,255,0.15),transparent_40%)]"></div>
@@ -99,7 +99,7 @@ const Banner = () => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.4 }}
-            className="mt-5 text-gray-300 text-sm md:text-xl max-w-2xl"
+            className="mt-5 text-white text-sm md:text-xl max-w-2xl"
           >
             {slides[index].subtitle}
           </motion.p>
