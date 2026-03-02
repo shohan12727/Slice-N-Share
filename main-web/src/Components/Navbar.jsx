@@ -9,8 +9,8 @@ export default function Navbar() {
 
   return (
     <nav
-     className="sticky top-0 z-50 w-full border-b border-white/10 bg-[#0a0a0f]/80 backdrop-blur-xl"
-    //  className="absolute top-0 left-0 right-0 z-50 w-full border-b border-white/10 bg-transparent"
+    //  className="sticky top-0 z-50 w-full border-b border-white/10 bg-[#0a0a0f]/80 backdrop-blur-xl"
+     className="absolute top-0 left-0 right-0 z-50 w-full border-b border-white/10 bg-transparent"
     >
       {/* Top gradient line */}
       <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-[#1E90FF] to-[#8A2BE2] opacity-70" />
@@ -32,7 +32,7 @@ export default function Navbar() {
               <button
                 onClick={() => setActive(link)}
                 className={`relative px-4 py-2 text-[0.82rem] font-semibold uppercase tracking-[0.07em] transition-colors duration-200 group
-                  ${active === link ? "text-white" : "text-white/50 hover:text-white"}`}
+                  ${active === link ? "text-white" : "text-white/80 hover:text-white"}`}
               >
                 {link}
 

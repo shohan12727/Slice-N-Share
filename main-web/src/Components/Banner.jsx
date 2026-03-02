@@ -41,7 +41,7 @@ const Banner = () => {
   }, []);
 
   return (
-    <div className="relative h-[420px] md:h-[750px] overflow-hidden bg-black">
+    <div className="relative h-[420px] md:h-[700px] overflow-hidden bg-black">
       
       {/* Background Image with Smooth Fade */}
       <AnimatePresence mode="wait">
@@ -58,14 +58,14 @@ const Banner = () => {
       </AnimatePresence>
 
       {/* Dark Gradient Overlay */}
-      <div className="absolute inset-0 bg-gradient-to-r from-black via-black/80 to-transparent"></div>
+      <div className="absolute inset-0 bg-gradient-to-r from-black via-black/30 to-transparent"></div>
 
       {/* Neon Glow Overlay */}
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_50%,rgba(0,255,255,0.15),transparent_40%)]"></div>
 
       {/* Content */}
       <div className="relative z-10 flex items-center h-full">
-        <div className="max-w-7xl mx-auto px-6 md:px-12">
+        <div className="max-w-7xl mx-auto px-6 md:px-2">
 
           {/* Badge */}
           <motion.div
