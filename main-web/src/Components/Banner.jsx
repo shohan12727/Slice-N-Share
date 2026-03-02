@@ -64,9 +64,10 @@ const Banner = () => {
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_50%,rgba(0,255,255,0.15),transparent_40%)]"></div>
 
       {/* Content */}
-      <div className="relative z-10 flex items-center h-full">
+      {/* <div className="relative z-10 flex items-center h-full"> */}
+      
+      <div className="relative z-10 h-full pt-16  md:pt-18 md:pl-20 lg:pt-48">
         <div className="max-w-7xl mx-auto px-6 md:px-2">
-
           {/* Badge */}
           <motion.div
             initial={{ y: -20, opacity: 0 }}
