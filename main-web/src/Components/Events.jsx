@@ -1,8 +1,21 @@
-import React from "react";
+import React, { useState } from "react";
+import {
+  BarChart,
+  Bar,
+  XAxis,
+  YAxis,
+  Tooltip,
+  ResponsiveContainer,
+  PieChart,
+  Pie,
+  Cell,
+} from "recharts";
 
-import pubgEvents from "../assets/Events/pupgEvents.png";
-import freefireEvents from "../assets/Events/freefireEvents.png";
-import codEvents from "../assets/Events/codEvents.png";
+// ================= EVENTS =================
+
+import pubgEvents from "../assets/Events/pupgEvents.png"
+import ffEvents from "../assets/Events/freefireEvents.png"
+import codEvents from "../assets/Events/codEvents.png"
 
 const events = [
   {
@@ -11,108 +24,261 @@ const events = [
     image: pubgEvents,
     category: "PUBG",
     status: "Upcoming",
-    description:
-      "Battle for survival in an intense PUBG esports tournament. Squad up, strategize, and compete against top players for ultimate victory and exciting rewards.",
+    players: 120,
+    prize: "$10,000",
+    description: "Battle for survival in an intense PUBG esports tournament.",
+    accentColor: "#22c55e",
+    bgGlow: "rgba(34,197,94,0.15)",
   },
   {
     title: "Free Fire Championship",
     date: "24 November 2025",
-    image: freefireEvents,
+    image: ffEvents,
     category: "Free Fire",
     status: "Completed",
-    description:
-      "Experience fast-paced action in the Free Fire Championship. Join elite players in explosive matches filled with strategy, skill, and thrilling gameplay moments.",
+    players: 80,
+    prize: "$5,000",
+    description: "Experience fast-paced action in the Free Fire Championship.",
+    accentColor: "#06b6d4",
+    bgGlow: "rgba(6,182,212,0.15)",
   },
   {
-  title: "Call of Duty Championship",
-  date: "24 March 2025",
-  image: codEvents,
-  category: "Call of Duty",
-  status: "Completed",
-  description:
-    "Engage in high-intensity combat at the Call of Duty Championship. Elite teams battle across tactical maps using precision gunplay, coordinated strategies, and split-second decision-making to dominate the battlefield.",
-}
+    title: "Call of Duty Championship",
+    date: "24 March 2025",
+    image: codEvents,
+    category: "Call of Duty",
+    status: "Completed",
+    players: 100,
+    prize: "$7,500",
+    description: "Engage in high-intensity combat at the Call of Duty Championship.",
+    accentColor: "#facc15",
+    bgGlow: "rgba(250,204,21,0.15)",
+  },
 ];
 
-const Events = () => {
+const barData = events.map((e) => ({ name: e.category, players: e.players }));
+const pieData = events.map((e) => ({ name: e.category, value: e.players }));
+const COLORS = ["#22c55e", "#06b6d4", "#facc15"];
+
+const CustomTooltip = ({ active, payload }) => {
+  if (active && payload && payload.length) {
+    return (
+      <div className="bg-[#0a0c14f2] border border-green-500/30 rounded-lg px-4 py-2 text-green-400 font-semibold">
+        {payload[0].name}: {payload[0].value}
+      </div>
+    );
+  }
+  return null;
+};
+
+export default function Events() {
+  const [hoveredCard, setHoveredCard] = useState(null);
+  const [activeFilter, setActiveFilter] = useState("All");
+
+  const filters = ["All", "Upcoming", "Completed"];
+  const filtered =
+    activeFilter === "All"
+      ? events
+      : events.filter((e) => e.status === activeFilter);
+
   return (
-    <section className="min-h-screen bg-[#0b0f19] py-15">
-      <div className="mx-auto max-w-7xl px-6">
-        
-        {/* Header */}
-        <div className="mb-16 text-center">
-          <h1 className="text-4xl md:text-5xl font-extrabold tracking-widest text-transparent bg-clip-text bg-gradient-to-r from-green-400 via-cyan-400 to-green-500 animate-gradient">
-  ESPORTS EVENTS
-</h1>
-          <p className="mt-4 text-gray-400 max-w-xl mx-auto">
+    <section className="relative min-h-screen bg-[#060810] py-20 overflow-hidden font-sans">
+
+      {/* Background grid */}
+      <div className="absolute inset-0 bg-[linear-gradient(rgba(34,197,94,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(34,197,94,0.03)_1px,transparent_1px)] bg-[size:60px_60px]" />
+
+      {/* Glow Orbs */}
+      <div className="absolute -top-40 -left-40 w-[600px] h-[600px] bg-green-500/5 rounded-full blur-[120px]" />
+      <div className="absolute bottom-20 -right-32 w-[500px] h-[500px] bg-cyan-400/5 rounded-full blur-[120px]" />
+
+      <div className="relative max-w-7xl mx-auto px-6">
+
+        {/* HEADER */}
+        <div className="text-center mb-16">
+          <div className="text-green-500 tracking-[4px] uppercase text-xs font-bold mb-4">
+            Competitive Gaming
+          </div>
+          <h1 className="text-5xl md:text-7xl font-extrabold text-white">
+            ESPORTS{" "}
+            <span className="stroke-green-500">
+              EVENTS
+            </span>
+          </h1>
+          <p className="text-gray-500 mt-4">
             Join competitive gaming tournaments and experience the thrill of esports battles
           </p>
         </div>
 
-        {/* Events Grid */}
-        <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
-          {events.map((event, index) => (
+        {/* FILTERS */}
+        <div className="flex justify-center gap-3 mb-12">
+          {filters.map((f) => (
+            <button
+              key={f}
+              onClick={() => setActiveFilter(f)}
+              className={`px-6 py-2 text-xs font-bold tracking-widest rounded border transition-all duration-200
+                ${
+                  activeFilter === f
+                    ? "bg-green-500/10 border-green-500 text-green-400 shadow-[0_0_20px_rgba(34,197,94,0.2)]"
+                    : "bg-white/5 border-white/10 text-gray-400 hover:text-green-400 hover:border-green-500/40"
+                }`}
+            >
+              {f}
+            </button>
+          ))}
+        </div>
+
+        {/* EVENTS GRID */}
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-20">
+          {filtered.map((event, index) => (
             <div
               key={index}
-              className="group relative h-[350px] overflow-hidden rounded-2xl bg-black shadow-xl transition-all duration-500 hover:-translate-y-2 hover:shadow-green-500/10"
+              onMouseEnter={() => setHoveredCard(index)}
+              onMouseLeave={() => setHoveredCard(null)}
+              className="bg-[#0d1117] border border-white/10 rounded-2xl overflow-hidden transition-all duration-500 hover:-translate-y-2"
+              style={{
+                boxShadow:
+                  hoveredCard === index
+                    ? `0 20px 60px ${event.bgGlow}`
+                    : "none",
+              }}
             >
-              {/* Image */}
-              <img
-                src={event.image}
-                alt={event.title}
-                className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-110"
-              />
+              <div className="relative overflow-hidden">
+                <img
+                  src={event.image}
+                  alt={event.title}
+                  className="w-full h-56 object-cover transition-transform duration-700 hover:scale-110"
+                />
+                <div className="absolute inset-0 bg-gradient-to-b from-black/10 to-[#0d1117]" />
 
-              {/* Gradient Overlay */}
-              <div className="absolute inset-0 bg-gradient-to-t from-black via-black/70 to-transparent" />
-
-              {/* Top Tags */}
-              <div className="absolute top-4 left-4 flex gap-2">
-                <span className="bg-green-500/90 px-3 py-1 text-xs font-semibold rounded-full text-black">
-                  {event.category}
-                </span>
-                <span className={`px-3 py-1 text-xs font-semibold rounded-full ${
-                  event.status === "Upcoming"
-                    ? "bg-yellow-400 text-black"
-                    : "bg-gray-700 text-white"
-                }`}>
-                  {event.status}
-                </span>
-              </div>
-
-              {/* Content */}
-              <div className="absolute bottom-0 left-0 right-0 p-6 text-white">
-                
-                {/* Title */}
-                <h3 className="text-xl font-bold tracking-wide">
-                  {event.title}
-                </h3>
-
-                {/* Date */}
-                <p className="mt-1 text-sm text-gray-300">
-                  {event.date}
-                </p>
-
-                {/* Hover Content */}
-                <div className="mt-4 translate-y-8 opacity-0 transition-all duration-500 group-hover:translate-y-0 group-hover:opacity-100">
-                  <p className="text-sm leading-relaxed text-gray-200">
-                    {event.description}
-                  </p>
-
-                  <button className="mt-5 inline-block rounded-lg bg-green-500 px-5 py-2 text-sm font-semibold text-black transition-all duration-300 hover:bg-green-400 hover:shadow-[0_0_20px_rgba(34,197,94,0.6)]">
-                    View Details →
-                  </button>
+                <div className="absolute top-4 left-4 flex gap-2">
+                  <span className="text-[10px] px-3 py-1 bg-black/60 border border-white/20 text-white rounded">
+                    {event.category}
+                  </span>
+                  <span
+                    className={`text-[10px] px-3 py-1 rounded border ${
+                      event.status === "Upcoming"
+                        ? "bg-yellow-400/10 border-yellow-400 text-yellow-400"
+                        : "bg-white/5 border-white/10 text-white"
+                    }`}
+                  >
+                    {event.status}
+                  </span>
                 </div>
               </div>
 
-              {/* Glow Border */}
-              <div className="pointer-events-none absolute inset-0 rounded-2xl ring-1 ring-transparent transition duration-300 group-hover:ring-green-400/40" />
+              <div className="p-6">
+                <h3 className="text-white font-bold text-lg mb-1">
+                  {event.title}
+                </h3>
+                <p className="text-gray-500 text-sm mb-3">
+                  📅 {event.date}
+                </p>
+                <p className="text-gray-400 text-sm mb-5">
+                  {event.description}
+                </p>
+
+                <div className="flex justify-between items-center border-t border-white/10 pt-4">
+                  <div>
+                    <p className="text-xs text-gray-500 uppercase tracking-widest">
+                      Players
+                    </p>
+                    <p
+                      className="font-bold text-lg"
+                      style={{ color: event.accentColor }}
+                    >
+                      {event.players}
+                    </p>
+                  </div>
+
+                  <div>
+                    <p className="text-xs text-gray-500 uppercase tracking-widest">
+                      Prize
+                    </p>
+                    <p className="font-bold text-white text-lg">
+                      {event.prize}
+                    </p>
+                  </div>
+
+                  <button
+                    className={`px-4 py-2 text-xs font-bold rounded transition-all ${
+                      event.status === "Upcoming"
+                        ? "bg-green-500 text-black"
+                        : "bg-white/5 border border-white/10 text-gray-400"
+                    }`}
+                  >
+                    {event.status === "Upcoming"
+                      ? "REGISTER"
+                      : "RESULTS"}
+                  </button>
+                </div>
+              </div>
             </div>
           ))}
+        </div>
+
+        {/* CHARTS */}
+        <div className="grid md:grid-cols-2 gap-6">
+
+          <div className="bg-[#0d1117] border border-white/10 rounded-2xl p-6">
+            <h3 className="text-white font-bold uppercase text-sm mb-6 tracking-widest">
+              Players Per Game
+            </h3>
+            <ResponsiveContainer width="100%" height={260}>
+              <BarChart data={barData}>
+                <XAxis dataKey="name" stroke="transparent" />
+                <YAxis stroke="transparent" />
+                <Tooltip content={<CustomTooltip />} />
+                <Bar dataKey="players" radius={[6, 6, 0, 0]}>
+                  {barData.map((_, i) => (
+                    <Cell key={i} fill={COLORS[i]} />
+                  ))}
+                </Bar>
+              </BarChart>
+            </ResponsiveContainer>
+          </div>
+
+          <div className="bg-[#0d1117] border border-white/10 rounded-2xl p-6">
+            <h3 className="text-white font-bold uppercase text-sm mb-6 tracking-widest">
+              Game Popularity
+            </h3>
+            <div className="flex items-center gap-6">
+              <PieChart width={180} height={180}>
+                <Pie
+                  data={pieData}
+                  dataKey="value"
+                  innerRadius={50}
+                  outerRadius={85}
+                  paddingAngle={4}
+                >
+                  {pieData.map((_, i) => (
+                    <Cell key={i} fill={COLORS[i]} />
+                  ))}
+                </Pie>
+                <Tooltip content={<CustomTooltip />} />
+              </PieChart>
+
+              <div className="flex flex-col gap-3">
+                {events.map((event, i) => (
+                  <div key={i} className="flex items-center gap-2 text-sm text-gray-400">
+                    <div
+                      className="w-2 h-2 rounded-full"
+                      style={{ background: COLORS[i] }}
+                    />
+                    {event.category}
+                    <span
+                      className="ml-auto font-bold"
+                      style={{ color: COLORS[i] }}
+                    >
+                      {event.players}
+                    </span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+
         </div>
       </div>
     </section>
   );
-};
-
-export default Events;
+}

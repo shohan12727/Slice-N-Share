@@ -17,3 +17,23 @@
 *{
     font-family: "Exo 2", sans-serif;
 }
+
+
+@keyframes gradientMove {
+  0% { background-position: 0% }
+  100% { background-position: 200% }
+}
+
+.animate-gradient {
+  background-size: 200% auto;
+  animation: gradientMove 4s linear infinite;
+}
+
+
+.grid-bg {
+  background-color: #0b0f19;
+  background-image:
+    linear-gradient(rgba(0, 255, 255, 0.07) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(168, 85, 247, 0.07) 1px, transparent 1px);
+  background-size: 40px 40px;
+}
