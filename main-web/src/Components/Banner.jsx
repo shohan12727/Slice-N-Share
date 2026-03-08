@@ -68,16 +68,7 @@ const Banner = () => {
       
       <div className="relative z-10 h-full pt-16  md:pt-18 md:pl-20 lg:pt-48">
         <div className="max-w-7xl mx-auto px-6 md:px-2">
-          {/* Badge */}
-          <motion.div
-            initial={{ y: -20, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            transition={{ duration: 0.6 }}
-            className="inline-block mb-4 px-4 py-1 bg-cyan-500/20 border border-cyan-400 text-cyan-400 text-sm rounded-full backdrop-blur-md"
-          >
-            🔴 LIVE TOURNAMENTS AVAILABLE
-          </motion.div>
-
+      
           {/* Title */}
           <AnimatePresence mode="wait">
             <motion.h1
