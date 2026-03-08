@@ -4,6 +4,9 @@ import Root from "../Root/Root";
 import Home from "../Pages/Home";
 import Directory from "../Components/Directory";
 
+import CompanyDirectory from "../Components/CompanyDirectory";
+import PlayerDirectory from "../Components/PlayerDirectory";
+
 export const router = createBrowserRouter([
   {
     path: "/",
@@ -15,9 +18,17 @@ export const router = createBrowserRouter([
         Component: Home,
       },
       {
-        path:"/directory",
-        element: <Directory/>
-      }
+        path: "/directory",
+        element: <Directory />,
+      },
+      {
+        path: "/playerDirectory",
+        element: <PlayerDirectory />,
+      },
+      {
+        path: "/companyDirectory",
+        element: <CompanyDirectory />,
+      },
     ],
   },
 ]);
