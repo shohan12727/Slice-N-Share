@@ -167,7 +167,7 @@ const CompanyDirectory = () => {
     <div className="min-h-screen pt-5F md:pt-15 bg-black text-white">
 
       {/* ── Page Header ── */}
-      <div className="relative px-6 md:px-10 pt-10 pb-8 border-b border-white/5">
+      <div className="relative px-6 md:px-10 pt-20 md:pt-15  pb-4  border-b border-white/5">
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_30%_50%,rgba(0,255,255,0.05),transparent_60%)]" />
         <div className="relative max-w-7xl mx-auto flex items-center justify-between">
           <div className="flex items-center gap-3">

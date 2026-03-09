@@ -244,7 +244,7 @@ const PlayerDirectory = () => {
     <div className="min-h-screen pt-5 md:pt-15 bg-black text-white">
 
       {/* ── Page Header ── */}
-      <div className="relative px-6 md:px-10 pt-10 pb-8 border-b border-white/5">
+      <div className="relative px-6 md:px-10 pt-15  pb-4 border-b border-white/5">
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_30%_50%,rgba(0,255,255,0.05),transparent_60%)]" />
         <div className="relative max-w-7xl mx-auto flex items-center justify-between">
           <div className="flex items-center gap-3">
@@ -253,7 +253,7 @@ const PlayerDirectory = () => {
                 <path strokeLinecap="round" strokeLinejoin="round" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
               </svg>
             </div>
-            <h1 className="text-2xl md:text-3xl font-extrabold tracking-tight">
+            <h1 className="text-2xl  md:text-3xl font-extrabold tracking-tight">
               <span className="text-white">Player </span>
               <span className="bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent">
                 Directory
