@@ -8,6 +8,8 @@ import CompanyDirectory from "../Components/CompanyDirectory";
 import PlayerDirectory from "../Components/PlayerDirectory";
 import OurVision from "../Pages/OurVision";
 
+
+
 export const router = createBrowserRouter([
   {
     path: "/",
@@ -17,10 +19,6 @@ export const router = createBrowserRouter([
       {
         index: true,
         Component: Home,
-      },
-      {
-        path: "/our-vision",
-        Component: OurVision,
       },
       {
         path: "/directory",
@@ -33,7 +31,7 @@ export const router = createBrowserRouter([
       {
         path: "/companyDirectory",
         element: <CompanyDirectory />,
-      },
+      }
     ],
   },
 ]);

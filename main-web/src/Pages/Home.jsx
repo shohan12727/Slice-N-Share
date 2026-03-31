@@ -5,6 +5,7 @@ import Events from "../Components/Events";
 import Contact from "../Components/Contact";
 import AllGames from "../Components/AllGames";
 import OurVision from "./OurVision";
+import StatsPage from "./StatsPage";
 
 const Home = () => {
   return (
@@ -12,10 +13,11 @@ const Home = () => {
     <ScrollToTopButton/>
     <Banner />
     <AllGames/>
-  
      <Events/>
+      <Sponsored />
+     <StatsPage/>
        <OurVision/>
-    <Sponsored />
+   
     <Contact/>
     </>
   );

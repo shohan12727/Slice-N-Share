@@ -4,7 +4,6 @@ import logo from "../assets/main-logo-2.png";
 
 const navLinks = [
   { label: "Home", path: "/" },
-  { label: "Our Vision", path: "/our-vision" },
   { label: "Tournament", path: "/tournament" },
   { label: "Find", path: "/directory" },
   { label: "Events", path: "/events" },
@@ -76,7 +75,7 @@ export default function Navbar() {
             to="#"
             className="hidden md:inline-flex items-center px-5 py-2 rounded-lg bg-gradient-to-r from-[#1E90FF] to-[#8A2BE2] text-white text-[0.78rem] font-bold uppercase tracking-[0.08em] shadow-[0_2px_14px_rgba(30,144,255,0.3)] hover:shadow-[0_4px_22px_rgba(138,43,226,0.5)] hover:-translate-y-px transition-all duration-200"
           >
-            Join Now
+           LogIn
           </NavLink>
 
           {/* Hamburger */}

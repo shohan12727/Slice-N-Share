@@ -1,15 +1,4 @@
 import React, { useState } from "react";
-import {
-  BarChart,
-  Bar,
-  XAxis,
-  YAxis,
-  Tooltip,
-  ResponsiveContainer,
-  PieChart,
-  Pie,
-  Cell,
-} from "recharts";
 
 // ================= EVENTS =================
 
@@ -216,68 +205,7 @@ export default function Events() {
           ))}
         </div>
 
-        {/* CHARTS */}
-        <div className="grid md:grid-cols-2 gap-6">
 
-          <div className="bg-[#0d1117] border border-white/10 rounded-2xl p-6">
-            <h3 className="text-white font-bold uppercase text-sm mb-6 tracking-widest">
-              Players Per Game
-            </h3>
-            <ResponsiveContainer width="100%" height={260}>
-              <BarChart data={barData}>
-                <XAxis dataKey="name" stroke="transparent" />
-                <YAxis stroke="transparent" />
-                <Tooltip content={<CustomTooltip />} />
-                <Bar dataKey="players" radius={[6, 6, 0, 0]}>
-                  {barData.map((_, i) => (
-                    <Cell key={i} fill={COLORS[i]} />
-                  ))}
-                </Bar>
-              </BarChart>
-            </ResponsiveContainer>
-          </div>
-
-          <div className="bg-[#0d1117] border border-white/10 rounded-2xl p-6">
-            <h3 className="text-white font-bold uppercase text-sm mb-6 tracking-widest">
-              Game Popularity
-            </h3>
-            <div className="flex items-center gap-6">
-              <PieChart width={180} height={180}>
-                <Pie
-                  data={pieData}
-                  dataKey="value"
-                  innerRadius={50}
-                  outerRadius={85}
-                  paddingAngle={4}
-                >
-                  {pieData.map((_, i) => (
-                    <Cell key={i} fill={COLORS[i]} />
-                  ))}
-                </Pie>
-                <Tooltip content={<CustomTooltip />} />
-              </PieChart>
-
-              <div className="flex flex-col gap-3">
-                {events.map((event, i) => (
-                  <div key={i} className="flex items-center gap-2 text-sm text-gray-400">
-                    <div
-                      className="w-2 h-2 rounded-full"
-                      style={{ background: COLORS[i] }}
-                    />
-                    {event.category}
-                    <span
-                      className="ml-auto font-bold"
-                      style={{ color: COLORS[i] }}
-                    >
-                      {event.players}
-                    </span>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
-
-        </div>
       </div>
     </section>
   );
