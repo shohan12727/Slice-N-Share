@@ -4,6 +4,7 @@ import logo from "../assets/main-logo-2.png";
 
 const navLinks = [
   { label: "Home", path: "/" },
+  { label: "Our Vision", path: "/our-vision" },
   { label: "Tournament", path: "/tournament" },
   { label: "Find", path: "/directory" },
   { label: "Events", path: "/events" },
